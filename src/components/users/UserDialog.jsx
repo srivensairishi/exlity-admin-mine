@@ -65,11 +65,15 @@ export default function UserDialog({ open, onClose, user, onSave, isLoading }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-      const payload = { ...formData };
+    const payload = { ...formData };
     if (user && !payload.password) {
       delete payload.password;
     }
-    onSave(payload);
+    if (user) {
+      onSave({ id: user.id, ...payload });
+    } else {
+      onSave(payload);
+    }
   };
 
   return (        
