@@ -72,8 +72,8 @@ export default function UsersPage() {
   });
 
   const handleSave = (userData) => {
-    if (selectedUser) {
-      updateUserMutation.mutate({ id: selectedUser.id, userData });
+    if (userData.id) {
+      updateUserMutation.mutate({ id: userData.id, userData });
     } else {
       createUserMutation.mutate(userData);
     }
